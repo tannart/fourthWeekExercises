@@ -26,5 +26,7 @@ public class goTree{
 		theTree.getMax();
 		theTree.getMin();
 		
+		theTree.toString();
+		
 	}
 }	
