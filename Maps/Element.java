@@ -1,8 +1,20 @@
 public class Element{
-    public int eKey;
-	public String eName;
-	public Element next;
-	private int Position
+    private int eKey;
+	private String eName;
+	private Element next;
+	private int position;
+	
+	public Element getNext(){
+	    return next;
+	}
+	
+	public String geteName(){
+	    return eName;
+	}
+	
+	public int geteKey(){
+	    return eKey;
+	}
 	
 	public Element(int eKey, String eName){
 	    this.eKey = eKey;
@@ -12,20 +24,40 @@ public class Element{
 	
 	public void addElement(Element newElement){
 	    if(this.next == null){
-		    this.next = new Element;
+		    this.next = newElement;
 		} else{
 		    this.next.addElement(newElement);
 		}
 	}
 	
 	
-	public void search(Element currentKey, int key){
+	public String search(Element currentKey, int key){
 	
-	    Element searchKey;
+	    Element searchKey = null;
+		String gotKey = null;
 		
-	    for(searchkey = currentKey ; searchKey.key != key; searchKey = searchKey.next){
+	    for(searchKey = currentKey ; searchKey.eKey != key; searchKey = searchKey.next){
 		    position++;
 		}
+		for(searchKey = currentKey ; searchKey != null; searchKey = searchKey.next){
+		    if(searchKey.eKey == key){
+			    gotKey = searchKey.eName;
+			}  
+		}
 		
-		return searchKey.name;
+		return gotKey;
 	}
+	
+	public String deleteElement(Element currentKey, int key){
+	    Element searchKey = null;
+		Element deletedKey = null;
+	    for(searchKey = currentKey ; searchKey.next!= null; searchKey = searchKey.next){
+		    if(searchKey.next.eKey == key){
+			    deletedKey = searchKey.next;
+			    searchKey.next = searchKey.next.next;
+			}  
+		}
+	    return deletedKey.eName;
+	}
+}
+	
