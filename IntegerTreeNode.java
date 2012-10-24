@@ -3,24 +3,28 @@ public class IntegerTreeNode{
 	IntegerTreeNode left;
 	IntegerTreeNode right;
 	
+	public IntegerTreeNode(int value){
+	    this.value = value;
+	}
+	
 	public int getValue(){
 	    return value;
 	}
 	
-	public add(int newNumber){
-	    if(newNumber > this.value){ // checks to see if the number to be added is larger or smaller than the current integer
-		    if(right == null{  //Checks if there is anything on the right node
-			    right = new IntegerTreeNode(newNumber); // adds number to the rightnode
+	public void add(int newNumber){
+	    if(newNumber > this.value){ 
+		    if(right == null){  
+			    right = new IntegerTreeNode(newNumber); 
 				
 			} else {
 			
-			    right.add(newNumber); // if the right node has a value, moves to that value and reimplements the add method
+			    right.add(newNumber); 
 			}
 			
 		} else {
 		
 		    if(left == null){
-			    left = new IntegerTreeNode(newNumber);  // does the same thing with the left node if new value is lower than original node value
+			    left = new IntegerTreeNode(newNumber);  
 				
 			} else {
 			
@@ -29,32 +33,35 @@ public class IntegerTreeNode{
 		}
 	}
 	
-	public contains(int n){
+	public boolean contains(int n){
 	
 	    if (n == this.value){
+		System.out.println("The value " + n + " is present in the tree");
 	    return true;
 			
 		} else if (n > this.value){
         return right.contains(n);
 			
+		} else if(n < this.value) {
+		    return left.contains(n);	
 		} else {
-		return left.contains(n);
-			
+		    return false;
 		}
-		return false;
 	}
+	
 	public void getMax(){
 	   if(this.right == null){
-	        System.out.println(this.getValue());
+			System.out.println("The value " + this.getValue() + " is the maximum present in the tree");
 		} else {
 		    this.right.getMax();
+	    }
 	}
 	
 	public void getMin(){
 	   if(this.left == null){
-	        System.out.println(this.getValue());
+			System.out.println("The value " + getValue() + " is the minimum present in the tree");
 		} else {
 		    this.left.getMin();
-	}
-	
+	    }	
+    }
 }
