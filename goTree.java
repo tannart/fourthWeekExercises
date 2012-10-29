@@ -2,29 +2,27 @@ public class goTree{
     
 	public static void main(String[] args){
 	    
-		IntegerTreeNode theTree = new IntegerTreeNode(7);
+		IntegerTreeNode theTree = new IntegerTreeNode(6);
 		
-		theTree.add(4);
-		theTree.add(29);
-		theTree.add(106);
-		theTree.add(532);
-		theTree.add(6);
-		theTree.add(88);
-		theTree.add(90);
-		theTree.add(120);
-		theTree.add(1);
-		theTree.add(2);
-		theTree.add(78);
-		theTree.add(66);
-		theTree.add(44);
-		theTree.add(39);
-		theTree.add(999);
+		theTree.add(5);
+		theTree.add(3);
+		theTree.add(9);
+    	theTree.add(10);
+		theTree.add(14);
+		theTree.add(25);
+		theTree.add(36);
+		theTree.add(46);
+		theTree.add(57);
+		theTree.add(35);
+
+
+
 		
 		theTree.contains(532);
 		theTree.contains(66);
 		
-		theTree.getMax();
-		theTree.getMin();
+		//theTree.getMax();
+		//theTree.getMin();
 		
 		theTree.toString();
 		
