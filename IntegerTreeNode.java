@@ -6,9 +6,9 @@ public class IntegerTreeNode{
 	private IntegerTreeNode left;
 	private IntegerTreeNode right;
 	private String str;
-	private	String str1;
-	private	String strR;
-	private	String strL;
+	private	String str1 = "";
+	private	String strR = "";
+	private	String strL = "";
 
 	
 	public IntegerTreeNode(int value){
@@ -81,36 +81,45 @@ public class IntegerTreeNode{
 	public String toString(){
 	    str = "[" + Integer.toString(this.value);
 	    boolean nullValues = false;
-	    //strL = Integer.toString(this.left.value);
-	    //strR = Integer.toString(this.right.value);
+	    boolean nullValuesL = false;
+	    boolean nullValuesR = false;
+	    String nullL = "";
+	    String nullR = "";
 
         while(nullValues == false){
-        	if(this.left!= null){
-        		strL = strL + "L [" + Integer.toString(this.left.value);
+        	if(this.left == null){
+        		nullValuesL = true;
+        		nullL = nullL + "]";
+        	} else {
+        		strL = strL + "L[" + Integer.toString(this.left.value);
+        		
         	}
 
         	if(this.right!=null) {
-        		strR = strR + "R [" + Integer.toString(this.right.value);
+        		strR = strR + "R[" + Integer.toString(this.right.value);
+        	} else {
+        		nullValuesR = true;
+        		nullR = nullR + "]";
         	}
-        	
+
+        	if(nullValuesR == true || nullValuesL == true){
+        		nullValues = true;
+        		break;
+        	} else if(nullValuesR == true){
+        		this.left = this.left.left;
+        	} else if(nullValuesL == true){
+        		this.right = this.right.right;
+        	} else {
+        		this.left = this.left.left;
+        	}
         }
-        str = str + strL + strR;
+        str = str + strL + strR + "]";
 
         System.out.println(str);
 
         return str;
 	}
 
-	public void moveDown(){
-		if(this.left!=null){
-			this.left = this.left.left;
-			this.left.toString();
-		} else if(this.right != null){
-			this.right = this.right.right;
-			this.right.toString();
-		}
-	}
-	
 
 	
 	public int getDepth(){
