@@ -5,6 +5,11 @@ public class IntegerTreeNode{
 	private static int minDepth = 0;
 	private IntegerTreeNode left;
 	private IntegerTreeNode right;
+	private String str;
+	private	String str1;
+	private	String strR;
+	private	String strL;
+
 	
 	public IntegerTreeNode(int value){
 	    this.value = value;
@@ -36,18 +41,23 @@ public class IntegerTreeNode{
 	
 	public boolean contains(int n){
 	
+	    while(this.left != null || this.right != null){
 	    if (n == this.value){
-		System.out.println("The value " + n + " is present in the tree");
-	    return true;
+		    System.out.println("The value " + n + " is present in the tree");
+	        return true;
 			
 		} else if (n > this.value){
-        return right.contains(n);
+            return right.contains(n);
 			
 		} else if(n < this.value) {
 		    return left.contains(n);	
+
 		} else {
 		    return false;
 		}
+	}
+	    System.out.println("The requested value "+ n + " was not found in the tree.");
+		return false;
 	}
 	
 	public void getMax(){
@@ -69,31 +79,39 @@ public class IntegerTreeNode{
     }
 	
 	public String toString(){
-	    value = this.value;
-		String str = null;
-	    String str1 = null;
-		String strR = null;
-		String strL = null;
-	    str1 = Integer.toString(this.value);
+	    str = "[" + Integer.toString(this.value);
+	    boolean nullValues = false;
+	    //strL = Integer.toString(this.left.value);
+	    //strR = Integer.toString(this.right.value);
 
-		if(this.left != null){
-		    strL = strL + Integer.toString(this.left.value);
-		    this.left.toString();
-		} else { 
-		    strL = strL + "]";
-		}
-		if(this.right != null){
-            this.right.toString();
-			strR = strR + Integer.toString(this.right.value);
-		} else{
-			strR = strR + "]";
-		}
-		
-		str = str1+strL+strR;
+        while(nullValues == false){
+        	if(this.left!= null){
+        		strL = strL + "L [" + Integer.toString(this.left.value);
+        	}
 
-		System.out.println(str);
-	    return str;
+        	if(this.right!=null) {
+        		strR = strR + "R [" + Integer.toString(this.right.value);
+        	}
+        	
+        }
+        str = str + strL + strR;
+
+        System.out.println(str);
+
+        return str;
 	}
+
+	public void moveDown(){
+		if(this.left!=null){
+			this.left = this.left.left;
+			this.left.toString();
+		} else if(this.right != null){
+			this.right = this.right.right;
+			this.right.toString();
+		}
+	}
+	
+
 	
 	public int getDepth(){
 		if(maxDepth > minDepth){
