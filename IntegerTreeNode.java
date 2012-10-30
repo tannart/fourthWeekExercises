@@ -5,10 +5,11 @@ public class IntegerTreeNode{
 	private static int minDepth = 0;
 	private IntegerTreeNode left;
 	private IntegerTreeNode right;
-	private String str;
+	private String str = "[" + Integer.toString(this.value);
 	private	String str1 = "";
 	private	String strR = "";
 	private	String strL = "";
+	private IntegerTreeNode hold;
 
 	
 	public IntegerTreeNode(int value){
@@ -78,22 +79,15 @@ public class IntegerTreeNode{
 	    }	
     }
 	
-	public String toString(){ // constructs string of branches with values
-	    str = "[" + Integer.toString(this.value);
-	    boolean nullValues = false;
-	    boolean nullValuesL = false;
-	    boolean nullValuesR = false;
-	    String nullL = "";
-	    String nullR = "";
-
-        while(nullValues == false){
+	public String toTheString(){ // constructs string of branches with values
+	   
         	str = str + "L[";
 
 
         	if(this.left == null){  // checks the left branch for values
-        		nullValuesL = true;
+        		str = str + "]";
         	} else {
-        		strL = strL  + Integer.toString(this.left.value);
+        		str = str  + Integer.toString(this.left.value);
         	}
 
         	str = str + "R[";
@@ -101,23 +95,13 @@ public class IntegerTreeNode{
         	if(this.right!=null) {  //checks the right branch for values
         		str = str + Integer.toString(this.right.value);
         	} else {
-        		nullValuesR = true;
-        		nullR = nullR + "]";
+        		str = str + "]";
         	}
 
-        	if(nullValuesR == true && nullValuesL == true){
-        		nullValues = true;
-        		break;
-        	} else if(nullValuesR == true){
-        		this.left = this.left.left;
-        	} else if(nullValuesL == true){
-        		this.right = this.right.right;
-        	} else {
-        		this.left = this.left.left;
-        		this.right = this.right.right;
-        	}
-        }
-        str = str + strL + strR + "]";
+        	if(this.right != null && this.left != null){
+        		hold = this;
+        		this.left = this.left.toTheString();
+        	} 
 
         System.out.println(str);
 
