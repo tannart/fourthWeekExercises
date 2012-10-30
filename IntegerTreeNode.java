@@ -19,7 +19,7 @@ public class IntegerTreeNode{
 	    return value;
 	}
 	
-	public void add(int newNumber){
+	public void add(int newNumber){  
 	    if(newNumber > this.value){ 
 		    if(right == null){  
 			    right = new IntegerTreeNode(newNumber); 
@@ -78,7 +78,7 @@ public class IntegerTreeNode{
 	    }	
     }
 	
-	public String toString(){
+	public String toString(){ // constructs string of branches with values
 	    str = "[" + Integer.toString(this.value);
 	    boolean nullValues = false;
 	    boolean nullValuesL = false;
@@ -87,22 +87,25 @@ public class IntegerTreeNode{
 	    String nullR = "";
 
         while(nullValues == false){
-        	if(this.left == null){
+        	str = str + "L[";
+
+
+        	if(this.left == null){  // checks the left branch for values
         		nullValuesL = true;
-        		nullL = nullL + "]";
         	} else {
-        		strL = strL + "L[" + Integer.toString(this.left.value);
-        		
+        		strL = strL  + Integer.toString(this.left.value);
         	}
 
-        	if(this.right!=null) {
-        		strR = strR + "R[" + Integer.toString(this.right.value);
+        	str = str + "R[";
+
+        	if(this.right!=null) {  //checks the right branch for values
+        		str = str + Integer.toString(this.right.value);
         	} else {
         		nullValuesR = true;
         		nullR = nullR + "]";
         	}
 
-        	if(nullValuesR == true || nullValuesL == true){
+        	if(nullValuesR == true && nullValuesL == true){
         		nullValues = true;
         		break;
         	} else if(nullValuesR == true){
@@ -111,6 +114,7 @@ public class IntegerTreeNode{
         		this.right = this.right.right;
         	} else {
         		this.left = this.left.left;
+        		this.right = this.right.right;
         	}
         }
         str = str + strL + strR + "]";
