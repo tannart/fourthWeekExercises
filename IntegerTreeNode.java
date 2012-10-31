@@ -1,18 +1,16 @@
 public class IntegerTreeNode{
-    private int value;
-	private static int depth;
+    private int value = 0;
 	private static int maxDepth = 0;
 	private static int minDepth = 0;
+	private static int depth;
 	private IntegerTreeNode left;
 	private IntegerTreeNode right;
-	private String str = "[" + Integer.toString(this.value);
-	private	String str1 = "";
-	private	String strR = "";
-	private	String strL = "";
-	private IntegerTreeNode hold;
+
+
 
 	
 	public IntegerTreeNode(int value){
+
 	    this.value = value;
 	}
 	
@@ -24,6 +22,8 @@ public class IntegerTreeNode{
 	    if(newNumber > this.value){ 
 		    if(right == null){  
 			    right = new IntegerTreeNode(newNumber); 
+			    System.out.println("new tree value " + newNumber);
+			    
 			} else {
 			
 			    right.add(newNumber); 
@@ -33,6 +33,8 @@ public class IntegerTreeNode{
 		
 		    if(left == null){
 			    left = new IntegerTreeNode(newNumber);  
+			    System.out.println("new tree value " + newNumber);
+
 			} else {
 			
 			    left.add(newNumber);
@@ -41,25 +43,29 @@ public class IntegerTreeNode{
 	}
 	
 	public boolean contains(int n){
-	
+
 	    while(this.left != null || this.right != null){
+
 	    if (n == this.value){
+
 		    System.out.println("The value " + n + " is present in the tree");
 	        return true;
 			
-		} else if (n > this.value){
+		} else if (n > this.value && this.right != null){
             return right.contains(n);
 			
-		} else if(n < this.value) {
-		    return left.contains(n);	
+		} else if(n < this.value && this.left != null) {
+		    return left.contains(n);
 
 		} else {
+			
 		    return false;
 		}
 	}
 	    System.out.println("The requested value "+ n + " was not found in the tree.");
 		return false;
 	}
+
 	
 	public void getMax(){
 	   if(this.right == null){
@@ -78,35 +84,24 @@ public class IntegerTreeNode{
 		    this.left.getMin();
 	    }	
     }
+
+
 	
-	public String toTheString(){ // constructs string of branches with values
-	   
-        	str = str + "L[";
+	public String toString(){ // constructs string of branches with values
+        String str = "" + Integer.toString(this.value);
 
+      
+        if(left != null){
+        	str +=  left.toString();
+        }
 
-        	if(this.left == null){  // checks the left branch for values
-        		str = str + "]";
-        	} else {
-        		str = str  + Integer.toString(this.left.value);
-        	}
+        if(right != null){
+        	str +=  right.toString();
+        }
 
-        	str = str + "R[";
-
-        	if(this.right!=null) {  //checks the right branch for values
-        		str = str + Integer.toString(this.right.value);
-        	} else {
-        		str = str + "]";
-        	}
-
-        	if(this.right != null && this.left != null){
-        		hold = this;
-        		this.left = this.left.toTheString();
-        	} 
-
-        System.out.println(str);
-
-        return str;
-	}
+        return "[" +str+ "]";
+        
+    }
 
 
 	
